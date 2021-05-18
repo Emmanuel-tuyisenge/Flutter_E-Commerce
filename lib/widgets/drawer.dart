@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final imageUrl =
+    final String _imageUrl =
         "https://lh3.googleusercontent.com/proxy/8MXxTyYm0j2zHuDR1msEaW0aJ3teEVY3XU-ohLHine3snpgo9azJFsOOBra65EpEf9S2S6jGUlVhxt67bXZ1JwVgA_YmkWozzv_5EHNI_C00dLS0wo2L31enaTuor4gP9N2ZuCr9d16F";
 
     return Drawer(
@@ -21,7 +21,8 @@ class MyDrawer extends StatelessWidget {
                 accountName: Text("Manu Wilder"),
                 accountEmail: Text("lilcoolmanu@gmail.com"),
                 currentAccountPicture: CircleAvatar(
-                  backgroundImage: NetworkImage(imageUrl),
+                  radius: 50.0,
+                  backgroundImage: NetworkImage(_imageUrl),
                 ),
               ),
             ),
