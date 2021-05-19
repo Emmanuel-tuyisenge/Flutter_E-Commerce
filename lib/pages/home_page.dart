@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_ecommerce/models/products.dart';
+import 'package:flutter_ecommerce/utils/routes.dart';
 import 'package:flutter_ecommerce/widgets/home_widgets/product_header.dart';
 import 'package:flutter_ecommerce/widgets/home_widgets/product_list.dart';
 import 'package:flutter_ecommerce/widgets/themes.dart';
@@ -42,7 +44,15 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     //final dummyList = List.generate(20, (index) => ProductModel.items[0]);
     return Scaffold(
-      backgroundColor: MyTheme.creamColor,
+      backgroundColor: context.canvasColor,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
+        backgroundColor: context.theme.buttonColor,
+        child: Icon(
+          CupertinoIcons.cart,
+          color: Colors.white,
+        ),
+      ),
       body: SafeArea(
         child: Container(
           padding: Vx.m32,
@@ -51,7 +61,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               ProductHeader(),
               if (ProductModel.items.isNotEmpty)
-                ProductList().p16().expand()
+                ProductList().expand()
               else
                 Center(
                   child: CircularProgressIndicator().centered().py16(),
