@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_ecommerce/models/products.dart';
+import 'package:flutter_ecommerce/widgets/home_widgets/product_header.dart';
+import 'package:flutter_ecommerce/widgets/home_widgets/product_list.dart';
 import 'package:flutter_ecommerce/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
-import '/widgets/drawer.dart';
 import 'dart:convert';
 
 class HomePage extends StatefulWidget {
@@ -49,102 +50,17 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ProductHeader(),
-              if (ProductModel.items != null && ProductModel.items.isNotEmpty)
-                ProductList().expand()
+              if (ProductModel.items.isNotEmpty)
+                ProductList().p16().expand()
               else
                 Center(
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator().centered().py16(),
                 ),
             ],
           ),
         ),
       ),
     );
-  }
-}
-
-class ProductHeader extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        "Wilder Shop App".text.xl5.bold.color(MyTheme.darkBluishColor).make(),
-        "Current trend".text.xl2.make(),
-      ],
-    );
-  }
-}
-
-class ProductList extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: ProductModel.items.length,
-      itemBuilder: (context, index) {
-        final product = ProductModel.items[index];
-        return ProductItem(product: product);
-      },
-    );
-  }
-}
-
-class ProductItem extends StatelessWidget {
-  final Item product;
-
-  const ProductItem({Key? key, required this.product})
-      // ignore: unnecessary_null_comparison
-      : assert(product != null),
-        super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return VxBox(
-      child: Row(
-        children: [
-          ProductImage(
-            image: product.image,
-          ),
-          Expanded(
-              child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              product.name.text.lg.color(MyTheme.darkBluishColor).bold.make(),
-              product.desc.text.textStyle(context.captionStyle!).make(),
-              10.heightBox,
-              ButtonBar(
-                alignment: MainAxisAlignment.spaceBetween,
-                buttonPadding: EdgeInsets.zero,
-                children: [
-                  "\$${product.price}".text.bold.xl.make(),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(MyTheme.darkBluishColor),
-                        shape: MaterialStateProperty.all(StadiumBorder())),
-                    child: "Buy".text.make(),
-                  ),
-                ],
-              ).pOnly(right: 8.0),
-            ],
-          ))
-        ],
-      ),
-    ).white.rounded.square(150).make().py16();
-  }
-}
-
-class ProductImage extends StatelessWidget {
-  final String image;
-
-  const ProductImage({Key? key, required this.image}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Image.network(
-      image,
-    ).box.rounded.p8.color(MyTheme.creamColor).make().p16().w40(context);
   }
 }
 
