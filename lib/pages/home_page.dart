@@ -61,11 +61,9 @@ class _HomePageState extends State<HomePage> {
             children: [
               ProductHeader(),
               if (ProductModel.items.isNotEmpty)
-                ProductList().expand()
+                ProductList().py16().expand()
               else
-                Center(
-                  child: CircularProgressIndicator().centered().py16(),
-                ),
+                CircularProgressIndicator().centered().expand(),
             ],
           ),
         ),

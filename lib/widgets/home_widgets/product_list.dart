@@ -12,13 +12,15 @@ class ProductList extends StatelessWidget {
       shrinkWrap: true,
       itemCount: ProductModel.items.length,
       itemBuilder: (context, index) {
-        final product = ProductModel.items[index];
+        //final product = ProductModel.items[index];
+        final product = ProductModel.getByPosition(index);
         return InkWell(
           onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => HomeDetailPage(
                 product: product,
+                //product: ProductModel.getById(2),
               ),
             ),
           ),
