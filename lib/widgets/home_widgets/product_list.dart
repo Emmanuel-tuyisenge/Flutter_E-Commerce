@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce/models/cart.dart';
 import 'package:flutter_ecommerce/pages/home_detail_page.dart';
 import '../home_widgets/product_image.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '/models/products.dart';
+import 'add_to_cart.dart';
 
 class ProductList extends StatelessWidget {
   @override
@@ -62,7 +62,7 @@ class ProductItem extends StatelessWidget {
                 buttonPadding: EdgeInsets.zero,
                 children: [
                   "\€${product.price}".text.bold.xl.make(),
-                  _AddToCart(product: product),
+                  AddToCart(product: product),
                 ],
               ).pOnly(right: 8.0),
             ],
@@ -70,37 +70,5 @@ class ProductItem extends StatelessWidget {
         ],
       ),
     ).color(context.cardColor).rounded.square(150).make().py16();
-  }
-}
-
-class _AddToCart extends StatefulWidget {
-  final Item product;
-  const _AddToCart({
-    Key? key,
-    required this.product,
-  }) : super(key: key);
-
-  @override
-  __AddToCartState createState() => __AddToCartState();
-}
-
-class __AddToCartState extends State<_AddToCart> {
-  bool isAdded = false;
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        isAdded = isAdded.toggle();
-        final _product = ProductModel();
-        final _cart = CartModel();
-        _cart.product = _product;
-        _cart.add(widget.product);
-        setState(() {});
-      },
-      style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(context.theme.buttonColor),
-          shape: MaterialStateProperty.all(StadiumBorder())),
-      child: isAdded ? Icon(Icons.done) : "Add to cart".text.make(),
-    );
   }
 }

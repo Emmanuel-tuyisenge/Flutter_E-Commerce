@@ -5,7 +5,6 @@ import 'package:flutter_ecommerce/models/products.dart';
 import 'package:flutter_ecommerce/utils/routes.dart';
 import 'package:flutter_ecommerce/widgets/home_widgets/product_header.dart';
 import 'package:flutter_ecommerce/widgets/home_widgets/product_list.dart';
-import 'package:flutter_ecommerce/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'dart:convert';
 
